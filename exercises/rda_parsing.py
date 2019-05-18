@@ -21,7 +21,7 @@ def term(token):
         return_value = char_string[next_token] == token
         return return_value
     except IndexError:
-        return True
+        return False
 
 
 def derivation_E1():
@@ -45,7 +45,7 @@ def non_terminal_start_E():
     global next_token
 
     save = int(next_token)
-    for derivation in (derivation_E1, derivation_E1):
+    for derivation in (derivation_E1, derivation_E2):
         next_token = int(save)
         if derivation():
             return True
