@@ -11,14 +11,14 @@ E_x -> |id * E_x| id | ( E )
 
 next_token = -1
 
-char_string = ["id", "*", "(", "id", "+", "id", ")"]
+token_list = ["id", "*", "(", "id", "+", "id", ")"]
 
 
 def term(token):
-    global char_string, next_token
+    global token_list, next_token
     try:
         next_token += 1
-        return_value = char_string[next_token] == token
+        return_value = token_list[next_token] == token
         return return_value
     except IndexError:
         return False
