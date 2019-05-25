@@ -105,7 +105,14 @@ program_11 = """
     }
 """
 
-current_developing = program_11
+program_12 = """
+    class A {
+        get_age () : Int {
+            24
+        };
+    }
+"""
+current_developing = program_12
 
 test_programs = {
     "single_arith_class": program_6,
