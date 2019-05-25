@@ -84,9 +84,25 @@ program_9 = """
 
 """
 
+# class with attr declarations
+
+program_10 = """
+        class A {
+            1 + 1;
+        }
+
+        class B inherits A {
+            age : Int;
+            name : String;
+            2 + 2;
+        }
+
+"""
+
 test_programs = {
     "single_arith_class": program_6,
     "list_arith_classes": program_7,
     "list_inheritance_classes": program_8,
-    "class_many_expressions": program_9
+    "class_many_expressions": program_9,
+    "attributes_declaration": program_10
 }

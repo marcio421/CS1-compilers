@@ -175,8 +175,30 @@ def p_feature_list(p):
 def p_feature(p):
     """
     feature : exp SEMICOLON
+    feature : IDENTIFIER COLON TYPE SEMICOLON
+    feature : IDENTIFIER COLON TYPE ASSIGNMENT exp SEMICOLON
     """
-    p[0] = ("FEATURE", p[1], p[2])
+    # TODO remove expression from class body
+
+    p[0] = tuple(["FEATURE"] + p[1:])
+
+
+# def p_formal_list(p):
+#     """
+#     formal_list : formal formal_list
+#     formal_list : empty
+#     """
+#     if len(p) > 2:
+#         p[0] = tuple(["LIST-OF-FORMALS"] + p[1:])
+#     else:
+#         p[0] = ("EMPTY-FORMAL-LIST",)
+#
+#
+# def p_formal(p):
+#     """
+#     formal : IDENTIFIER ':' TYPE SEMICOLON
+#     """
+#     p[0] = tuple(("ATTRIBUTE DECLARATION", ) + p[1:])
 
 
 def p_exp(p):
@@ -197,8 +219,21 @@ if __name__ == "__main__":
     from pprint import pprint
     lexer = lex.lex()
     parser = yacc.yacc()
-    for desc, test_data in cool_programs.test_programs.items():
-        result = parser.parse(input=test_data, lexer=lexer)
+
+    desc, tree = parser.parse(input=cool_programs.program_10, lexer=lexer)
+
+    input("\nType anything to continue")
+
+    print(f"------- {desc} ---------\n")
+    pprint(tree)
+    print("----------\n")
+
+    results = [(desc, parser.parse(input=test_data, lexer=lexer)) for desc, test_data in cool_programs.test_programs.items()]
+
+    input("Type anything to continue")
+
+    for result in results:
+        desc, tree = result
         print(f"------- {desc} ---------\n")
-        pprint(result)
+        pprint(tree)
         print("----------\n")
