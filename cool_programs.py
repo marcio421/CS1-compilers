@@ -165,7 +165,45 @@ program_17 = """
         };
     }
 """
-current_developing = program_17
+
+program_18 = """
+    class D {
+        print_hello () : String {
+            "Hello, World!"
+        };
+    }
+
+    class Main {
+        d: D <- new D;
+    }
+"""
+
+program_19 = """
+    class D {
+        print_hello (r: String, s: String ) : String {
+            "Hello, World!"
+        };
+    }
+
+    class C {
+        main () : String {"Hello!"};
+    }
+    class Main inherits C {
+        d: D <- new D;
+        print (): String {
+            d.print_hello("Hello,", "World!")
+        };
+        print_2 (x: String, a: String, b: String): String {
+            print_3 (x, a, b)
+        };
+        print_3 (x: String, y: String, z: String): String {
+            x@C.main()
+        };
+
+    }
+"""
+
+current_developing = program_19
 
 test_programs = {
     "single_arith_class": program_6,
@@ -179,5 +217,7 @@ test_programs = {
     "conditional_if": program_14,
     "while": program_15,
     "bool": program_16,
-    "string": program_17
+    "string": program_17,
+    "new type": program_18,
+    "dispatch": program_19
 }

@@ -51,6 +51,8 @@ symbol_mapping = {
     "-": "MINUS",
     "*": "TIMES",
     "/": "DIVIDE",
+    ".": "DOT",
+    "@": "AT"
 }
 
 comparison_op_mapping = {
@@ -89,6 +91,9 @@ t_SEMICOLON = ";"
 t_LTE = "<="
 t_LT = "<"
 t_EQ = "="
+
+t_DOT = r"\."
+t_AT = "@"
 
 
 def t_SYMBOL(t):
@@ -258,6 +263,43 @@ def p_exp_to_bool(p):
     exp : BOOL_CONST
     """
     p[0] = ("EXPRESSION-TO-BOOL", p[1])
+
+
+def p_exp_to_new_type(p):
+    """
+    exp : NEW TYPE
+    """
+    p[0] = ("EXPRESSION-TO-NEW-TYPE", p[1], p[2])
+
+
+def p_exp_to_dispatch_1(p):
+    """
+    exp : exp DOT IDENTIFIER LPAR exp_list RPAR
+    """
+    p[0] = tuple(["EXPRESSION-TO-DISPATCH1"] + p[1:])
+
+
+def p_exp_to_dispatch_2(p):
+    """
+    exp : exp AT TYPE DOT IDENTIFIER LPAR exp_list RPAR
+    """
+    p[0] = tuple(["EXPRESSION-TO-DISPATCH2"] + p[1:])
+
+
+def p_exp_to_dispatch_3(p):
+    """
+    exp : IDENTIFIER LPAR exp_list RPAR
+    """
+    p[0] = tuple(["EXPRESSION-TO-DISPATCH3"] + p[1:])
+
+
+def p_exp_list(p):
+    """
+    exp_list : exp COMMA exp_list
+    exp_list : exp
+    exp_list : empty
+    """
+    p[0] = tuple(["EXPRESSION-TO-EXP_LIST"] + p[1:])
 
 
 if __name__ == "__main__":
