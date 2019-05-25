@@ -1,0 +1,297 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    SYMBOL
+    whitespace
+
+Grammar
+
+Rule 0     S' -> exp
+Rule 1     exp -> exp PLUS exp
+Rule 2     exp -> exp MINUS exp
+Rule 3     exp -> exp TIMES exp
+Rule 4     exp -> exp DIVIDE exp
+Rule 5     exp -> DIGIT
+Rule 6     exp -> LPAR exp RPAR
+
+Terminals, with rules where they appear
+
+DIGIT                : 5
+DIVIDE               : 4
+LPAR                 : 6
+MINUS                : 2
+PLUS                 : 1
+RPAR                 : 6
+SYMBOL               : 
+TIMES                : 3
+error                : 
+whitespace           : 
+
+Nonterminals, with rules where they appear
+
+exp                  : 1 1 2 2 3 3 4 4 6 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . exp
+    (1) exp -> . exp PLUS exp
+    (2) exp -> . exp MINUS exp
+    (3) exp -> . exp TIMES exp
+    (4) exp -> . exp DIVIDE exp
+    (5) exp -> . DIGIT
+    (6) exp -> . LPAR exp RPAR
+
+    DIGIT           shift and go to state 2
+    LPAR            shift and go to state 3
+
+    exp                            shift and go to state 1
+
+state 1
+
+    (0) S' -> exp .
+    (1) exp -> exp . PLUS exp
+    (2) exp -> exp . MINUS exp
+    (3) exp -> exp . TIMES exp
+    (4) exp -> exp . DIVIDE exp
+
+    PLUS            shift and go to state 4
+    MINUS           shift and go to state 5
+    TIMES           shift and go to state 6
+    DIVIDE          shift and go to state 7
+
+
+state 2
+
+    (5) exp -> DIGIT .
+
+    PLUS            reduce using rule 5 (exp -> DIGIT .)
+    MINUS           reduce using rule 5 (exp -> DIGIT .)
+    TIMES           reduce using rule 5 (exp -> DIGIT .)
+    DIVIDE          reduce using rule 5 (exp -> DIGIT .)
+    $end            reduce using rule 5 (exp -> DIGIT .)
+    RPAR            reduce using rule 5 (exp -> DIGIT .)
+
+
+state 3
+
+    (6) exp -> LPAR . exp RPAR
+    (1) exp -> . exp PLUS exp
+    (2) exp -> . exp MINUS exp
+    (3) exp -> . exp TIMES exp
+    (4) exp -> . exp DIVIDE exp
+    (5) exp -> . DIGIT
+    (6) exp -> . LPAR exp RPAR
+
+    DIGIT           shift and go to state 2
+    LPAR            shift and go to state 3
+
+    exp                            shift and go to state 8
+
+state 4
+
+    (1) exp -> exp PLUS . exp
+    (1) exp -> . exp PLUS exp
+    (2) exp -> . exp MINUS exp
+    (3) exp -> . exp TIMES exp
+    (4) exp -> . exp DIVIDE exp
+    (5) exp -> . DIGIT
+    (6) exp -> . LPAR exp RPAR
+
+    DIGIT           shift and go to state 2
+    LPAR            shift and go to state 3
+
+    exp                            shift and go to state 9
+
+state 5
+
+    (2) exp -> exp MINUS . exp
+    (1) exp -> . exp PLUS exp
+    (2) exp -> . exp MINUS exp
+    (3) exp -> . exp TIMES exp
+    (4) exp -> . exp DIVIDE exp
+    (5) exp -> . DIGIT
+    (6) exp -> . LPAR exp RPAR
+
+    DIGIT           shift and go to state 2
+    LPAR            shift and go to state 3
+
+    exp                            shift and go to state 10
+
+state 6
+
+    (3) exp -> exp TIMES . exp
+    (1) exp -> . exp PLUS exp
+    (2) exp -> . exp MINUS exp
+    (3) exp -> . exp TIMES exp
+    (4) exp -> . exp DIVIDE exp
+    (5) exp -> . DIGIT
+    (6) exp -> . LPAR exp RPAR
+
+    DIGIT           shift and go to state 2
+    LPAR            shift and go to state 3
+
+    exp                            shift and go to state 11
+
+state 7
+
+    (4) exp -> exp DIVIDE . exp
+    (1) exp -> . exp PLUS exp
+    (2) exp -> . exp MINUS exp
+    (3) exp -> . exp TIMES exp
+    (4) exp -> . exp DIVIDE exp
+    (5) exp -> . DIGIT
+    (6) exp -> . LPAR exp RPAR
+
+    DIGIT           shift and go to state 2
+    LPAR            shift and go to state 3
+
+    exp                            shift and go to state 12
+
+state 8
+
+    (6) exp -> LPAR exp . RPAR
+    (1) exp -> exp . PLUS exp
+    (2) exp -> exp . MINUS exp
+    (3) exp -> exp . TIMES exp
+    (4) exp -> exp . DIVIDE exp
+
+    RPAR            shift and go to state 13
+    PLUS            shift and go to state 4
+    MINUS           shift and go to state 5
+    TIMES           shift and go to state 6
+    DIVIDE          shift and go to state 7
+
+
+state 9
+
+    (1) exp -> exp PLUS exp .
+    (1) exp -> exp . PLUS exp
+    (2) exp -> exp . MINUS exp
+    (3) exp -> exp . TIMES exp
+    (4) exp -> exp . DIVIDE exp
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    $end            reduce using rule 1 (exp -> exp PLUS exp .)
+    RPAR            reduce using rule 1 (exp -> exp PLUS exp .)
+    PLUS            shift and go to state 4
+    MINUS           shift and go to state 5
+    TIMES           shift and go to state 6
+    DIVIDE          shift and go to state 7
+
+  ! PLUS            [ reduce using rule 1 (exp -> exp PLUS exp .) ]
+  ! MINUS           [ reduce using rule 1 (exp -> exp PLUS exp .) ]
+  ! TIMES           [ reduce using rule 1 (exp -> exp PLUS exp .) ]
+  ! DIVIDE          [ reduce using rule 1 (exp -> exp PLUS exp .) ]
+
+
+state 10
+
+    (2) exp -> exp MINUS exp .
+    (1) exp -> exp . PLUS exp
+    (2) exp -> exp . MINUS exp
+    (3) exp -> exp . TIMES exp
+    (4) exp -> exp . DIVIDE exp
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    $end            reduce using rule 2 (exp -> exp MINUS exp .)
+    RPAR            reduce using rule 2 (exp -> exp MINUS exp .)
+    PLUS            shift and go to state 4
+    MINUS           shift and go to state 5
+    TIMES           shift and go to state 6
+    DIVIDE          shift and go to state 7
+
+  ! PLUS            [ reduce using rule 2 (exp -> exp MINUS exp .) ]
+  ! MINUS           [ reduce using rule 2 (exp -> exp MINUS exp .) ]
+  ! TIMES           [ reduce using rule 2 (exp -> exp MINUS exp .) ]
+  ! DIVIDE          [ reduce using rule 2 (exp -> exp MINUS exp .) ]
+
+
+state 11
+
+    (3) exp -> exp TIMES exp .
+    (1) exp -> exp . PLUS exp
+    (2) exp -> exp . MINUS exp
+    (3) exp -> exp . TIMES exp
+    (4) exp -> exp . DIVIDE exp
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    $end            reduce using rule 3 (exp -> exp TIMES exp .)
+    RPAR            reduce using rule 3 (exp -> exp TIMES exp .)
+    PLUS            shift and go to state 4
+    MINUS           shift and go to state 5
+    TIMES           shift and go to state 6
+    DIVIDE          shift and go to state 7
+
+  ! PLUS            [ reduce using rule 3 (exp -> exp TIMES exp .) ]
+  ! MINUS           [ reduce using rule 3 (exp -> exp TIMES exp .) ]
+  ! TIMES           [ reduce using rule 3 (exp -> exp TIMES exp .) ]
+  ! DIVIDE          [ reduce using rule 3 (exp -> exp TIMES exp .) ]
+
+
+state 12
+
+    (4) exp -> exp DIVIDE exp .
+    (1) exp -> exp . PLUS exp
+    (2) exp -> exp . MINUS exp
+    (3) exp -> exp . TIMES exp
+    (4) exp -> exp . DIVIDE exp
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    $end            reduce using rule 4 (exp -> exp DIVIDE exp .)
+    RPAR            reduce using rule 4 (exp -> exp DIVIDE exp .)
+    PLUS            shift and go to state 4
+    MINUS           shift and go to state 5
+    TIMES           shift and go to state 6
+    DIVIDE          shift and go to state 7
+
+  ! PLUS            [ reduce using rule 4 (exp -> exp DIVIDE exp .) ]
+  ! MINUS           [ reduce using rule 4 (exp -> exp DIVIDE exp .) ]
+  ! TIMES           [ reduce using rule 4 (exp -> exp DIVIDE exp .) ]
+  ! DIVIDE          [ reduce using rule 4 (exp -> exp DIVIDE exp .) ]
+
+
+state 13
+
+    (6) exp -> LPAR exp RPAR .
+
+    PLUS            reduce using rule 6 (exp -> LPAR exp RPAR .)
+    MINUS           reduce using rule 6 (exp -> LPAR exp RPAR .)
+    TIMES           reduce using rule 6 (exp -> LPAR exp RPAR .)
+    DIVIDE          reduce using rule 6 (exp -> LPAR exp RPAR .)
+    $end            reduce using rule 6 (exp -> LPAR exp RPAR .)
+    RPAR            reduce using rule 6 (exp -> LPAR exp RPAR .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 9 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 9 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 9 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 9 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 10 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 10 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 10 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 10 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 11 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 11 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 11 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 11 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 12 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 12 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 12 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 12 resolved as shift
