@@ -203,7 +203,13 @@ program_19 = """
     }
 """
 
-current_developing = program_19
+program_20 = """
+    class C {
+        x: Int <- 1 + (2 * 2) + (5/5);
+    }
+"""
+
+current_developing = program_20
 
 test_programs = {
     "single_arith_class": program_6,
@@ -219,5 +225,6 @@ test_programs = {
     "bool": program_16,
     "string": program_17,
     "new type": program_18,
-    "dispatch": program_19
+    "dispatch": program_19,
+    "parenthesis expression": program_20
 }

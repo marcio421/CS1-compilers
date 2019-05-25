@@ -272,6 +272,13 @@ def p_exp_to_new_type(p):
     p[0] = ("EXPRESSION-TO-NEW-TYPE", p[1], p[2])
 
 
+def p_exp_to_par_exp(p):
+    """
+    exp : LPAR exp RPAR
+    """
+    p[0] = ("EXP-INSIDE-PARENTHESIS", p[1], p[2], p[3])
+
+
 def p_exp_to_dispatch_1(p):
     """
     exp : exp DOT IDENTIFIER LPAR exp_list RPAR
