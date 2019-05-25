@@ -125,15 +125,32 @@ def t_error(t):
     return t
 
 
-
 # SYNTAX
 
 
 def p_program(p):
     """
-    program : class SEMICOLON
+    program : class_list
     """
-    p[0] = ("COOL program", p[1], p[2])
+    p[0] = ("COOL program", p[1])
+
+
+def p_empty(p):
+    """
+    empty :
+    """
+    pass
+
+
+def p_class_list(p):
+    """
+    class_list : class SEMICOLON class_list
+    class_list : empty
+    """
+    if len(p) > 2:
+        p[0] = ("LIST-OF-CLASSES", p[1], p[2], p[3])
+    else:
+        p[0] = ("EMPTY-CLASS-LIST",)
 
 
 def p_class(p):
@@ -160,6 +177,6 @@ def p_integer(p):
 if __name__ == "__main__":
     lexer = lex.lex()
     parser = yacc.yacc()
-    data = cool_programs.program_6
+    data = cool_programs.program_7
     result = parser.parse(input=data, lexer=lexer)
     print(result)

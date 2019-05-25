@@ -40,3 +40,16 @@ program_6 = """
             1 + 1;
         };
 """
+
+# list of classes
+
+program_7 = """
+        class A {
+            1 + 1;
+        };
+
+        class B {
+            1 + 1;
+        };
+
+"""
