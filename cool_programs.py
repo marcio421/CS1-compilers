@@ -147,7 +147,25 @@ program_15 = """
     }
 """
 
-current_developing = program_15
+program_16 = """
+    class Boolean {
+        assert (x : Bool) : Bool  {
+            true
+        };
+    }
+"""
+
+program_17 = """
+    class Data {
+        name : String <- "Marcio";
+        last_name : String <- "Caroso";
+        age : Int <- 24;
+        get_full_name (): String {
+            name + " " + last_name
+        };
+    }
+"""
+current_developing = program_17
 
 test_programs = {
     "single_arith_class": program_6,
@@ -158,5 +176,8 @@ test_programs = {
     "attr_assignment": program_11,
     "method_declaration": program_12,
     "method_with_params": program_13,
-    "conditional_if": program_14
+    "conditional_if": program_14,
+    "while": program_15,
+    "bool": program_16,
+    "string": program_17
 }

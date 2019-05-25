@@ -232,19 +232,32 @@ def p_exp(p):
         p[0] = tuple(["EXPRESSION-FLOW"] + p[1:])
 
 
-def p_exp_to_terminal(p):
+def p_exp_to_integer(p):
     """
     exp : INTEGER
+    """
+    p[0] = ("EXPRESSION-TO-INTEGER", p[1])
+
+
+def p_exp_to_identifier(p):
+    """
     exp : IDENTIFIER
     """
-    try:
-        int(p[1])
-    except ValueError:
-        node_name = "EXPRESSION-TO-IDENTIFIER"
-    else:
-        node_name = "EXPRESSION-TO-INTEGER"
+    p[0] = ("EXPRESSION-TO-IDENTIFIER", p[1])
 
-    p[0] = (node_name, p[1])
+
+def p_exp_to_string(p):
+    """
+    exp : STR_CONST
+    """
+    p[0] = ("EXPRESSIONS-TO-STR", p[1])
+
+
+def p_exp_to_bool(p):
+    """
+    exp : BOOL_CONST
+    """
+    p[0] = ("EXPRESSION-TO-BOOL", p[1])
 
 
 if __name__ == "__main__":
