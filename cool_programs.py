@@ -53,3 +53,17 @@ program_7 = """
         };
 
 """
+
+# class with inheritance
+
+
+program_8 = """
+        class A {
+            1 + 1;
+        };
+
+        class B inherits A {
+            1 + 1;
+        };
+
+"""

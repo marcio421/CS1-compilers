@@ -144,18 +144,19 @@ def p_empty(p):
 
 def p_class_list(p):
     """
-    class_list : class SEMICOLON class_list
+    class_list : class class_list
     class_list : empty
     """
     if len(p) > 2:
-        p[0] = ("LIST-OF-CLASSES", p[1], p[2], p[3])
+        p[0] = tuple(["LIST-OF-CLASSES"] + p[1:])
     else:
         p[0] = ("EMPTY-CLASS-LIST",)
 
 
 def p_class(p):
     """
-    class : CLASS TYPE LBRACK exp SEMICOLON RBRACK
+    class : CLASS TYPE LBRACK exp SEMICOLON RBRACK SEMICOLON
+    class : CLASS TYPE INHERITS TYPE LBRACK exp SEMICOLON RBRACK SEMICOLON
     """
     p[0] = tuple(["CLASS-DECLARATION"] + p[1:])
 
@@ -177,6 +178,6 @@ def p_integer(p):
 if __name__ == "__main__":
     lexer = lex.lex()
     parser = yacc.yacc()
-    data = cool_programs.program_7
+    data = cool_programs.program_8
     result = parser.parse(input=data, lexer=lexer)
     print(result)
