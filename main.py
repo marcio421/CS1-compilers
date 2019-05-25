@@ -265,6 +265,11 @@ def p_exp_to_bool(p):
     p[0] = ("EXPRESSION-TO-BOOL", p[1])
 
 
+def p_exp_negation(p):
+    """exp : NOT exp"""
+    p[0] = ("EXPRESSION-NEGATION", p[1], p[2])
+
+
 def p_exp_to_new_type(p):
     """
     exp : NEW TYPE

@@ -206,6 +206,7 @@ program_19 = """
 program_20 = """
     class C {
         x: Int <- 1 + (2 * 2) + (5/5);
+        y: Bool <- not false;
     }
 """
 
