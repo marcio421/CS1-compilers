@@ -63,6 +63,7 @@ tokens = (
     reserved_words["of"],
     reserved_words["not"],
     bool_const,
+    "TYPE",
     "assignment",
     "plus",
     "comma",
@@ -93,6 +94,11 @@ def t_identifier(t):
     r"[_a-zA-Z][_a-zA-Z0-9]{0,30}"
     t.type = reserved_words.get(t.value, "identifier")
     t.value = value_lookup(t.value)
+    return t
+
+
+def t_TYPE(t):
+    r"[A-Z][_a-zA-Z0-9]{0,30}"
     return t
 
 
