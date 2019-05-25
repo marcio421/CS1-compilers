@@ -38,7 +38,9 @@ program_5 = """
 
 program_6 = """
         class A {
-            1 + 1;
+            sum () : Int {
+                1 + 1
+            };
         }
 """
 
@@ -46,11 +48,11 @@ program_6 = """
 
 program_7 = """
         class A {
-            1 + 1;
+            a_two : Int <- 1 + 1;
         }
 
         class B {
-            1 + 1;
+            b_two: Int <- 1 + 1;
         }
 
 """
@@ -60,11 +62,11 @@ program_7 = """
 
 program_8 = """
         class A {
-            1 + 1;
+            x : Int <- 1 + 1;
         }
 
         class B inherits A {
-            1 + 1;
+            y : Int <- 1 + 1;
         }
 
 """
@@ -74,12 +76,12 @@ program_8 = """
 
 program_9 = """
         class A {
-            1 + 1;
-            2 + 2;
+            x : Int <- 1 + 1;
+            y : Int <- 2 + 2;
         }
 
         class B inherits A {
-            1 + 1;
+            x: Int <- 1 + 1;
         }
 
 """
@@ -88,13 +90,13 @@ program_9 = """
 
 program_10 = """
         class A {
-            1 + 1;
+            a: Int <- 1 + 1;
         }
 
         class B inherits A {
             age : Int;
             name : String;
-            2 + 2;
+            two : Int <- 2 + 2;
         }
 
 """

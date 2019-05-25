@@ -185,7 +185,6 @@ def p_feature_list(p):
 
 def p_feature(p):
     """
-    feature : exp SEMICOLON
     feature : IDENTIFIER COLON TYPE SEMICOLON
     feature : IDENTIFIER COLON TYPE ASSIGNMENT exp SEMICOLON
     feature : IDENTIFIER LPAR formal_list RPAR COLON TYPE LBRACK exp RBRACK SEMICOLON
