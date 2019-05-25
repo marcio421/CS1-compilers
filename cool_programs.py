@@ -112,7 +112,16 @@ program_12 = """
         };
     }
 """
-current_developing = program_12
+
+program_13 = """
+    class Function {
+        sum (x: Int, y: Int) : Int {
+            2*x - y/2 + 100
+        };
+    }
+"""
+
+current_developing = program_13
 
 test_programs = {
     "single_arith_class": program_6,

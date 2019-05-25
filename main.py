@@ -177,43 +177,54 @@ def p_feature(p):
     feature : exp SEMICOLON
     feature : IDENTIFIER COLON TYPE SEMICOLON
     feature : IDENTIFIER COLON TYPE ASSIGNMENT exp SEMICOLON
-    feature : IDENTIFIER LPAR RPAR COLON TYPE LBRACK exp RBRACK SEMICOLON
+    feature : IDENTIFIER LPAR formal_list RPAR COLON TYPE LBRACK exp RBRACK SEMICOLON
     """
     # TODO remove expression from class body
 
     p[0] = tuple(["FEATURE"] + p[1:])
 
 
-# def p_formal_list(p):
-#     """
-#     formal_list : formal formal_list
-#     formal_list : empty
-#     """
-#     if len(p) > 2:
-#         p[0] = tuple(["LIST-OF-FORMALS"] + p[1:])
-#     else:
-#         p[0] = ("EMPTY-FORMAL-LIST",)
-#
-#
-# def p_formal(p):
-#     """
-#     formal : IDENTIFIER ':' TYPE SEMICOLON
-#     """
-#     p[0] = tuple(("ATTRIBUTE DECLARATION", ) + p[1:])
+def p_formal_list(p):
+    """
+    formal_list : formal COMMA formal_list
+    formal_list : formal
+    """
+    if len(p) > 2:
+        p[0] = tuple(["LIST-OF-FORMALS"] + p[1:])
+    else:
+        p[0] = tuple(["LIST-TO-FORMAL"] + p[1:])
+
+
+def p_formal(p):
+    """
+    formal : IDENTIFIER COLON TYPE
+    """
+    p[0] = tuple(["PARAMETER DECLARATION"] + p[1:])
 
 
 def p_exp(p):
     """
     exp : exp PLUS exp
+    exp : exp MINUS exp
+    exp : exp TIMES exp
+    exp : exp DIVIDE exp
     """
     p[0] = ("SUM-EXPRESSION", p[2], p[1], p[3])
 
 
-def p_integer(p):
+def p_exp_to_terminal(p):
     """
     exp : INTEGER
+    exp : IDENTIFIER
     """
-    p[0] = ("EXPRESSION-TO-INTEGER", p[1])
+    try:
+        int(p[1])
+    except ValueError:
+        node_name = "EXPRESSION-TO-IDENTIFIER"
+    else:
+        node_name = "EXPRESSION-TO-INTEGER"
+
+    p[0] = (node_name, p[1])
 
 
 if __name__ == "__main__":
