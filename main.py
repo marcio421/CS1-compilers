@@ -216,6 +216,8 @@ def p_formal(p):
 def p_exp(p):
     """
     exp : IF exp THEN exp ELSE exp FI
+    exp : WHILE exp LOOP exp POOL
+    exp : IDENTIFIER ASSIGNMENT exp
     exp : exp PLUS exp
     exp : exp MINUS exp
     exp : exp TIMES exp

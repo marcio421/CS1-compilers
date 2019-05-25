@@ -136,7 +136,18 @@ program_14 = """
     }
 """
 
-current_developing = program_14
+program_15 = """
+    class Test {
+        x: Int <- 0;
+         run (): Int {
+            while x <= 100
+            loop x <- x + 1
+            pool
+        };
+    }
+"""
+
+current_developing = program_15
 
 test_programs = {
     "single_arith_class": program_6,
