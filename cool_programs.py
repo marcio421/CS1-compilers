@@ -39,7 +39,7 @@ program_5 = """
 program_6 = """
         class A {
             1 + 1;
-        };
+        }
 """
 
 # list of classes
@@ -47,11 +47,11 @@ program_6 = """
 program_7 = """
         class A {
             1 + 1;
-        };
+        }
 
         class B {
             1 + 1;
-        };
+        }
 
 """
 
@@ -61,16 +61,32 @@ program_7 = """
 program_8 = """
         class A {
             1 + 1;
-        };
+        }
 
         class B inherits A {
             1 + 1;
-        };
+        }
+
+"""
+
+# class with more then one expression
+
+
+program_9 = """
+        class A {
+            1 + 1;
+            2 + 2;
+        }
+
+        class B inherits A {
+            1 + 1;
+        }
 
 """
 
 test_programs = {
     "single_arith_class": program_6,
     "list_arith_classes": program_7,
-    "list_inheritance_classes": program_8
+    "list_inheritance_classes": program_8,
+    "class_many_expressions": program_9
 }

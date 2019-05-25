@@ -155,10 +155,28 @@ def p_class_list(p):
 
 def p_class(p):
     """
-    class : CLASS TYPE LBRACK exp SEMICOLON RBRACK SEMICOLON
-    class : CLASS TYPE INHERITS TYPE LBRACK exp SEMICOLON RBRACK SEMICOLON
+    class : CLASS TYPE LBRACK feature_list RBRACK
+    class : CLASS TYPE INHERITS TYPE LBRACK feature_list RBRACK
     """
     p[0] = tuple(["CLASS-DECLARATION"] + p[1:])
+
+
+def p_feature_list(p):
+    """
+    feature_list : feature feature_list
+    feature_list : empty
+    """
+    if len(p) > 2:
+        p[0] = tuple(["LIST-OF-FEATURES"] + p[1:])
+    else:
+        p[0] = ("EMPTY-FEATURE-LIST",)
+
+
+def p_feature(p):
+    """
+    feature : exp SEMICOLON
+    """
+    p[0] = ("FEATURE", p[1], p[2])
 
 
 def p_exp(p):
@@ -176,10 +194,11 @@ def p_integer(p):
 
 
 if __name__ == "__main__":
+    from pprint import pprint
     lexer = lex.lex()
     parser = yacc.yacc()
     for desc, test_data in cool_programs.test_programs.items():
         result = parser.parse(input=test_data, lexer=lexer)
         print(f"------- {desc} ---------\n")
-        print(result)
+        pprint(result)
         print("----------\n")
