@@ -84,7 +84,9 @@ t_comma = ","
 t_semicolon = ";"
 t_symbol = "[:{}\(\)]"
 
-t_whitespace = "[ \n\f\r\t\v]"
+
+def t_whitespace(t):
+    "[ \n\f\r\t\v]"
 
 
 def t_identifier(t):
