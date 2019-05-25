@@ -1,8 +1,8 @@
 import ply.lex as lex
+from utils import tokenize
 
 import cool_programs
 
-from utils import tokenize
 
 bool_const = "BOOL_CONST"
 
@@ -42,57 +42,57 @@ reserved_words = {
 }
 
 
+symbol_mapping = {
+    ":": "COLON",
+    "{": "LBRACK",
+    "}": "RBRACK",
+    "(": "LPAR",
+    ")": "RPAR",
+    "-": "MINUS",
+    "*": "TIMES",
+    "/": "DIVIDE"
+}
+
 # List of token names
 
 tokens = (
-    reserved_words["class"],
-    reserved_words["else"],
-    reserved_words["fi"],
-    reserved_words["if"],
-    reserved_words["in"],
-    reserved_words["inherits"],
-    reserved_words["isvoid"],
-    reserved_words["let"],
-    reserved_words["loop"],
-    reserved_words["pool"],
-    reserved_words["then"],
-    reserved_words["while"],
-    reserved_words["case"],
-    reserved_words["esac"],
-    reserved_words["new"],
-    reserved_words["of"],
-    reserved_words["not"],
-    bool_const,
+    "ASSIGNMENT",
+    "PLUS",
+    "COMMA",
+    "SEMICOLON",
+    "IDENTIFIER",
     "TYPE",
-    "assignment",
-    "plus",
-    "comma",
-    "semicolon",
-    "identifier",
-    "integer",
+    "INTEGER",
     "STR_CONST",
-    "symbol",
-    "newline",
+    "SYMBOL",
+    "NEWLINE",
     "whitespace",
 )
 
+tokens = tokens + tuple(reserved_words.values()) + tuple(symbol_mapping.values())
+tokens = tuple(set(tokens))
 
-t_assignment = "="
+t_ASSIGNMENT = "="
 
-t_plus = "\+"
+t_PLUS = "\+"
 
-t_comma = ","
-t_semicolon = ";"
-t_symbol = "[:{}\(\)]"
+t_COMMA = ","
+t_SEMICOLON = ";"
+
+
+def t_SYMBOL(t):
+    r"[:{}\(\)\-\*\/]"
+    t.type = symbol_mapping[t.value]
+    return t
 
 
 def t_whitespace(t):
-    "[ \n\f\r\t\v]"
+    r"[ \n\f\r\t\v]"
 
 
-def t_identifier(t):
+def t_IDENTIFIER(t):
     r"[_a-zA-Z][_a-zA-Z0-9]{0,30}"
-    t.type = reserved_words.get(t.value, "identifier")
+    t.type = reserved_words.get(t.value, "IDENTIFIER")
     t.value = value_lookup(t.value)
     return t
 
@@ -102,7 +102,7 @@ def t_TYPE(t):
     return t
 
 
-def t_integer(t):
+def t_INTEGER(t):
     r"[0-9]+"
     t.value = int(t.value)
     return t
@@ -114,7 +114,7 @@ def t_STR_CONST(t):
     return t
 
 
-def t_newline(t):
+def t_NEWLINE(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 

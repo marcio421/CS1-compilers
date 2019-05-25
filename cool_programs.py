@@ -34,3 +34,9 @@ program_5 = """
             return "12345"           
         };
 """
+
+program_6 = """
+        class A {
+            1 + 1;
+        };
+"""
