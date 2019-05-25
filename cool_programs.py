@@ -99,6 +99,8 @@ program_10 = """
 
 """
 
+current_developing = program_10
+
 test_programs = {
     "single_arith_class": program_6,
     "list_arith_classes": program_7,

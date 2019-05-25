@@ -220,7 +220,7 @@ if __name__ == "__main__":
     lexer = lex.lex()
     parser = yacc.yacc()
 
-    desc, tree = parser.parse(input=cool_programs.program_10, lexer=lexer)
+    desc, tree = parser.parse(input=cool_programs.current_developing, lexer=lexer)
 
     input("\nType anything to continue")
 
