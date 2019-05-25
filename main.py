@@ -72,7 +72,7 @@ tokens = (
 tokens = tokens + tuple(reserved_words.values()) + tuple(symbol_mapping.values())
 tokens = tuple(set(tokens))
 
-t_ASSIGNMENT = "="
+t_ASSIGNMENT = "<-"
 
 t_PLUS = "\+"
 

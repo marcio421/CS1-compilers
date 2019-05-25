@@ -99,7 +99,13 @@ program_10 = """
 
 """
 
-current_developing = program_10
+program_11 = """
+    class C {
+        age : Int <- 24;
+    }
+"""
+
+current_developing = program_11
 
 test_programs = {
     "single_arith_class": program_6,
