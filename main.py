@@ -178,6 +178,8 @@ def p_integer(p):
 if __name__ == "__main__":
     lexer = lex.lex()
     parser = yacc.yacc()
-    data = cool_programs.program_8
-    result = parser.parse(input=data, lexer=lexer)
-    print(result)
+    for desc, test_data in cool_programs.test_programs.items():
+        result = parser.parse(input=test_data, lexer=lexer)
+        print(f"------- {desc} ---------\n")
+        print(result)
+        print("----------\n")

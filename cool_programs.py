@@ -35,6 +35,7 @@ program_5 = """
         };
 """
 
+
 program_6 = """
         class A {
             1 + 1;
@@ -67,3 +68,9 @@ program_8 = """
         };
 
 """
+
+test_programs = {
+    "single_arith_class": program_6,
+    "list_arith_classes": program_7,
+    "list_inheritance_classes": program_8
+}
