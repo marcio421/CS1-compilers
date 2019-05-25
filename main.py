@@ -50,7 +50,13 @@ symbol_mapping = {
     ")": "RPAR",
     "-": "MINUS",
     "*": "TIMES",
-    "/": "DIVIDE"
+    "/": "DIVIDE",
+}
+
+comparison_op_mapping = {
+    "<=": "LTE",
+    "<": "LT",
+    "=": "EQ"
 }
 
 # List of token names
@@ -69,7 +75,8 @@ tokens = (
     "whitespace",
 )
 
-tokens = tokens + tuple(reserved_words.values()) + tuple(symbol_mapping.values())
+tokens = tokens + tuple(reserved_words.values()) + tuple(symbol_mapping.values()) + \
+         tuple(comparison_op_mapping.values())
 tokens = tuple(set(tokens))
 
 t_ASSIGNMENT = "<-"
@@ -78,6 +85,10 @@ t_PLUS = "\+"
 
 t_COMMA = ","
 t_SEMICOLON = ";"
+
+t_LTE = "<="
+t_LT = "<"
+t_EQ = "="
 
 
 def t_SYMBOL(t):
@@ -188,6 +199,7 @@ def p_formal_list(p):
     """
     formal_list : formal COMMA formal_list
     formal_list : formal
+    formal_list : empty
     """
     if len(p) > 2:
         p[0] = tuple(["LIST-OF-FORMALS"] + p[1:])
@@ -204,12 +216,19 @@ def p_formal(p):
 
 def p_exp(p):
     """
+    exp : IF exp THEN exp ELSE exp FI
     exp : exp PLUS exp
     exp : exp MINUS exp
     exp : exp TIMES exp
     exp : exp DIVIDE exp
+    exp : exp LT exp
+    exp : exp LTE exp
+    exp : exp EQ exp
     """
-    p[0] = ("SUM-EXPRESSION", p[2], p[1], p[3])
+    if len(p[1:]) == 3:
+        p[0] = ("EXPRESSION-OP", p[2], p[1], p[3])
+    else:
+        p[0] = tuple(["EXPRESSION-FLOW"] + p[1:])
 
 
 def p_exp_to_terminal(p):

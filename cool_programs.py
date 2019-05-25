@@ -121,12 +121,29 @@ program_13 = """
     }
 """
 
-current_developing = program_13
+program_14 = """
+    class A {
+        max ( x: Int, y: Int) : Int {
+            if y <= x
+            then
+                x
+            else
+                y
+            fi
+        };
+    }
+"""
+
+current_developing = program_14
 
 test_programs = {
     "single_arith_class": program_6,
     "list_arith_classes": program_7,
     "list_inheritance_classes": program_8,
     "class_many_expressions": program_9,
-    "attributes_declaration": program_10
+    "attributes_declaration": program_10,
+    "attr_assignment": program_11,
+    "method_declaration": program_12,
+    "method_with_params": program_13,
+    "conditional_if": program_14
 }
