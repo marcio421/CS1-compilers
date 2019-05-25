@@ -194,7 +194,6 @@ def p_feature(p):
     feature : IDENTIFIER COLON TYPE ASSIGNMENT exp SEMICOLON
     feature : IDENTIFIER LPAR formal_list RPAR COLON TYPE LBRACK exp RBRACK SEMICOLON
     """
-    # TODO remove expression from class body
 
     p[0] = tuple(["FEATURE"] + p[1:])
 
