@@ -314,6 +314,21 @@ def p_exp_list(p):
     p[0] = tuple(["EXPRESSION-TO-EXP_LIST"] + p[1:])
 
 
+def p_exp_lines(p):
+    """
+    exp_lines : exp SEMICOLON exp_lines
+    exp_lines : empty
+    """
+    p[0] = tuple(["EXPRESSION-TO-EXP_LINES"] + p[1:])
+
+
+def p_expression_block(p):
+    """
+    exp : LBRACK  exp_lines RBRACK
+    """
+    p[0] = tuple(["EXPRESSION-TO-EXP_BLOCK"] + p[1:])
+
+
 if __name__ == "__main__":
     from pprint import pprint
     lexer = lex.lex()

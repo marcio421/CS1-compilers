@@ -21,7 +21,8 @@ program_2 = """class A2I {
         if char = "9" then 9 else
         { abort(); 0; }
         fi fi fi fi fi fi fi fi fi fi
-     };"""
+     };
+     }"""
 
 program_4 = """class A {
     Bool X = true;
@@ -210,7 +211,7 @@ program_20 = """
     }
 """
 
-current_developing = program_20
+current_developing = program_2
 
 test_programs = {
     "single_arith_class": program_6,
@@ -227,5 +228,6 @@ test_programs = {
     "string": program_17,
     "new type": program_18,
     "dispatch": program_19,
-    "parenthesis expression": program_20
+    "parenthesis expression": program_20,
+    "big_program": program_2
 }
